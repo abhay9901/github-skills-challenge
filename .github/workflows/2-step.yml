@@ -27,7 +27,7 @@ jobs:
     needs: [find_exercise]
     env:
       ISSUE_REPOSITORY: ${{ github.repository }}
-      ISSUE_NUMBER: ${{ needs.find_exercise.outputs.issue-number }}
+      ISSUE_NUMBER: ${{ fromJSON(toJSON(needs.find_exercise.outputs))['issue-number'] }}
 
     steps:
       - name: Checkout
@@ -103,7 +103,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ISSUE_REPOSITORY: ${{ github.repository }}
-      ISSUE_NUMBER: ${{ needs.find_exercise.outputs.issue-number }}
+      ISSUE_NUMBER: ${{ fromJSON(toJSON(needs.find_exercise.outputs))['issue-number'] }}
 
     steps:
       - name: Checkout
